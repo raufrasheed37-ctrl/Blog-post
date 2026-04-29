@@ -1,32 +1,58 @@
+export async function generateStaticParams() {
+  return [
+    { slug: "how-consistency-builds-online-income" },
+    { slug: "sports-business-behind-modern-football" },
+    { slug: "why-small-brands-win-online" },
+    { slug: "athletes-as-global-brands" },
+    { slug: "streaming-platforms-changing-hollywood" },
+    { slug: "startup-founders-and-focus" },
+    { slug: "celebrity-culture-and-digital-power" },
+    { slug: "launch-fast-learn-faster" },
+    { slug: "automation-is-the-new-advantage" },
+    { slug: "raising-prices-without-losing-clients" },
+    { slug: "why-simple-offers-convert-more" },
+    { slug: "protecting-focus-in-a-distracted-world" },
+    { slug: "community-first-business-models" },
+    { slug: "solving-small-problems-for-big-profit" },
+    { slug: "high-paying-clients-without-cold-dms" },
+    { slug: "storytelling-sells-better-than-ads" },
+    { slug: "daily-systems-for-high-performance" },
+    { slug: "monetizing-trust-in-the-creator-economy" },
+    { slug: "profitable-business-before-scaling" },
+    { slug: "future-of-remote-work-with-ai" },
+    { slug: "building-client-trust-that-converts" },
+  ];
+}
+
 import Link from "next/link";
 
-
-  const posts = [
-  {
-      name: "Sarah Johnson",
-      handle: "@sarahwrites",
-      time: "2h ago",
-      slug: "how-consistency-builds-online-income",
-      title: "How Consistency Builds Online Income",
-      category: "Business",
-      likes: 128,
-      comments: 24,
-      text: "Consistency builds what motivation cannot. Real online income comes from showing up repeatedly and earning trust over time.",
-      avatarClass: "from-emerald-400 to-teal-500",
-    },
-    {
-      name: "Daniel Brooks",
-      handle: "@danielmedia",
-      time: "5h ago",
-      slug: "sports-business-behind-modern-football",
-      title: "The Sports Business Behind Modern Football",
-      category: "Sports",
-      likes: 214,
-      comments: 39,
-      text: "Modern football is now a billion-dollar business powered by branding and global media rights.",
-      avatarClass: "from-orange-400 to-amber-500",
-    },
-    {
+export default function SinglePostPage({ params }) {
+  const posts = [
+  {
+      name: "Sarah Johnson",
+      handle: "@sarahwrites",
+      time: "2h ago",
+      slug: "how-consistency-builds-online-income",
+      title: "How Consistency Builds Online Income",
+      category: "Business",
+      likes: 128,
+      comments: 24,
+      text: "Consistency builds what motivation cannot. Real online income comes from showing up repeatedly and earning trust over time.",
+      avatarClass: "from-emerald-400 to-teal-500",
+    },
+    {
+      name: "Daniel Brooks",
+      handle: "@danielmedia",
+      time: "5h ago",
+      slug: "sports-business-behind-modern-football",
+      title: "The Sports Business Behind Modern Football",
+      category: "Sports",
+      likes: 214,
+      comments: 39,
+      text: "Modern football is now a billion-dollar business powered by branding and global media rights.",
+      avatarClass: "from-orange-400 to-amber-500",
+    },
+    {
 name: "Olivia Grant",
 handle: "@oliviabuilds",
 time: "1d ago",
@@ -73,9 +99,9 @@ likes: 149,
 comments: 21,
 text: "Most founders fail from distraction, not lack of ideas. Focus is the real competitive advantage.",
 avatarClass: "from-violet-500 to-purple-600",
-}, 
+},
 
-    {
+    {
 name: "Ella Monroe",
 handle: "@showbizdaily",
 time: "2d ago",
@@ -123,7 +149,7 @@ comments: 32,
 text: "Clients pay for confidence and outcomes, not just hours. Better positioning supports premium pricing.",
 avatarClass: "from-yellow-600 to-orange-700",
 },
-    {
+    {
 name: "Clara James",
 handle: "@conversionlab",
 time: "3d ago",
@@ -170,8 +196,8 @@ likes: 248,
 comments: 40,
 text: "Massive companies often begin by solving one simple painful problem better than everyone else.",
 avatarClass: "from-red-600 to-pink-700",
-},  
-    {
+},  
+    {
 name: "Jordan Miles",
 handle: "@freelanceflow",
 time: "1d ago",
@@ -231,7 +257,7 @@ comments: 42,
 text: "Scaling a broken model only creates bigger problems. Profitability should come before expansion.",
 avatarClass: "from-red-500 to-pink-600",
 },
-    {
+    {
 name: "Nina Park",
 handle: "@futuretech",
 time: "1d ago",
@@ -242,176 +268,93 @@ likes: 288,
 comments: 52,
 text: "AI tools are changing productivity, hiring, and collaboration across global remote teams.",
 avatarClass: "from-pink-500 to-rose-500",
-}, 
+},
 
 {
-  name: "Sophie Carter",
-  handle: "@clientgrowth",
-  time: "1d ago",
-  slug: "building-client-trust-that-converts",
-  title: "Building Client Trust That Converts",
-  category: "Freelancing",
-  likes: 207,
-  comments: 34,
-  text: "Clients buy confidence before they buy services. Trust is the fastest path to premium opportunities.",
-  avatarClass: "from-amber-500 to-yellow-600",
+  name: "Sophie Carter",
+  handle: "@clientgrowth",
+  time: "1d ago",
+  slug: "building-client-trust-that-converts",
+  title: "Building Client Trust That Converts",
+  category: "Freelancing",
+  likes: 207,
+  comments: 34,
+  text: "Clients buy confidence before they buy services. Trust is the fastest path to premium opportunities.",
+  avatarClass: "from-amber-500 to-yellow-600",
 },
 ];
-    
 
-export async function generateStaticParams() {
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-} 
+  const slug = decodeURIComponent(params?.slug || "");
 
-export default async function SinglePostPage({ params }) {
-  const resolvedParams = await params;
-  const slug = decodeURIComponent(resolvedParams?.slug || ""); 
-
-  const post = posts.find(
-    (item) =>
-      item.slug.trim().toLowerCase() ===
-      slug.trim().toLowerCase()
-  );
-  if (!post) {
-    return (
-      <main className="min-h-screen bg-[#090909] p-10 text-white">
-        <h1>Post not found</h1>
-      </main>
-    );
-  } 
-
-  return (
-  <main className="min-h-screen bg-[#090909] text-zinc-100 px-4 py-8">
-    <div className="mx-auto max-w-3xl">
-
-      {/* Back */}
-      <Link
-        href="/"
-        className="text-sm text-zinc-400 transition hover:text-white"
-      >
-        ← Back to Home
-      </Link>
-
-      {/* Main Article */}
-      <section className="mt-8">
-
-        {/* Author Header */}
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div
-              className={`h-12 w-12 rounded-full bg-gradient-to-br ${post.avatarClass}`}
-            />
-
-            <div>
-              <h3 className="font-semibold text-white">
-                {post.name}
-              </h3>
-
-              <p className="text-sm text-zinc-500">
-                {post.handle} • {post.time}
-              </p>
-            </div>
-          </div>
-
-          <button className="rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-orange-400">
-            Subscribe
-          </button>
-        </div>
-
-        {/* Title */}
-        <h1 className="mt-8 text-4xl font-bold leading-tight text-white">
-          {post.title}
-        </h1>
-
-        {/* Article Content */}
-        <div className="mt-8 space-y-6 text-[17px] leading-8 text-zinc-300">
-          <p>{post.text}</p>
-
-          <p>
-            Long-term success comes from trust, consistency, and strong
-            systems. Professionals win by building what lasts instead of
-            chasing temporary hype.
-          </p>
-
-          <p>
-            In the digital world, consistency creates trust. People remember
-            those who continue showing up and delivering value over time.
-          </p>
-
-          <blockquote className="border-l-4 border-orange-500 pl-4 italic text-zinc-200">
-            “The goal is not perfection. The goal is momentum.”
-          </blockquote>
-
-          <p>
-            Start small. Improve fast. Let your work compound over time.
-            Consistency always beats temporary hype.
-          </p>
-        </div>
-
-        {/* Actions */}
-        <div className="mt-10 flex items-center gap-8 border-y border-white/10 py-5 text-sm text-zinc-400">
-          <button className="transition hover:text-red-400">
-            ♡ {post.likes}
-          </button>
-
-          <button className="transition hover:text-white">
-            💬 {post.comments}
-          </button>
-
-          <button className="transition hover:text-white">
-            ↻ 4
-          </button>
-
-          <button className="transition hover:text-white">
-            ↗ Share
-          </button>
-        </div>
-
-        {/* Stats Row */}
-        <div className="mt-6 flex flex-wrap justify-between gap-4 border-b border-white/10 pb-6 text-sm text-zinc-500">
-          <div>
-            {post.likes} Likes • {post.comments} Replies • 4 Restacks
-          </div>
-
-          <div>
-            Apr 27 at 7:26 PM
-          </div>
-        </div>
-
-        {/* Comment Box */}
-        <div className="mt-8 rounded-2xl border border-white/10 bg-[#141414] p-5">
-          <p className="text-zinc-500">
-            Be the first to comment...
-          </p>
-        </div>
-
-        {/* Demo Reply */}
-        <div className="mt-10 border-t border-white/10 pt-8">
-          <div className="flex gap-3">
-            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-zinc-500 to-zinc-700" />
-
-            <div>
-              <h4 className="font-semibold text-white">
-                Reader Comment
-              </h4>
-
-              <p className="text-sm text-zinc-500">
-                2h ago
-              </p>
-
-              <p className="mt-3 leading-7 text-zinc-300">
-                This article was excellent. Consistency really is the
-                competitive advantage for long-term growth.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </section>
-    </div>
-  </main>
+const post = posts.find(
+  (item) => item.slug.trim().toLowerCase() === slug.trim().toLowerCase()
 );
-    
-  }
+
+if (!post) {
+  return (
+    <main className="min-h-screen bg-[#090909] p-10 text-white">
+      <h1>Post not found</h1>
+    </main>
+  );
+}
+  return (
+    <main className="min-h-screen bg-[#090909] px-4 py-8 text-zinc-100">
+      <div className="mx-auto max-w-5xl">
+        <Link
+          href="/"
+          className="text-sm font-medium text-emerald-400 hover:underline"
+        >
+          ← Back to Articles
+        </Link>
+
+        <section className="mt-6 rounded-3xl border border-white/10 bg-[#111111] overflow-hidden">
+          <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-lime-500 p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-100">
+              Featured Article
+            </p>
+
+            <h1 className="mt-4 text-4xl font-bold text-[#07110b]">
+              {post.title}
+            </h1>
+
+            <div className="mt-6 flex flex-wrap gap-4 text-sm text-emerald-950">
+                 <span>{post.name}</span>
+                 <span>• {post.time}</span>
+                 <span>• 7 min read</span>
+                <span>• {post.category}</span>
+                <span>• ❤️ {post.likes}</span>
+                 <span>• 💬 {post.comments}</span>
+            </div>
+          </div>
+
+          <div className="p-8 space-y-8 text-zinc-300 leading-8">
+            <p>{post.text}</p>
+
+            <h2 className="text-2xl font-semibold text-white">
+              Why This Matters
+            </h2>
+
+            <p>
+              Long-term success comes from trust, consistency, and strong
+              systems. Professionals win by building what lasts instead of
+              chasing temporary hype.
+            </p>
+
+            <blockquote className="rounded-2xl border border-white/10 bg-[#161616] p-5 italic text-zinc-200">
+              “The goal is not perfection. The goal is momentum.”
+            </blockquote>
+
+            <h2 className="text-2xl font-semibold text-white">
+              Final Thoughts
+            </h2>
+
+            <p>
+              Start small. Improve fast. Let your work compound over time.
+              Consistency always beats temporary hype.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}
